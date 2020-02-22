@@ -1,22 +1,22 @@
 <template>
   <ul>
     <li v-for="item in items" :key="item.name">
-      <router-link :to="`/character/${item.index}`">{{ item.name }}</router-link>
+      <router-link :to="`/character/${item.id}`">{{ item.name }}</router-link>
     </li>
   </ul>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "List",
   computed: {
-    items() {
-      return this.$store.getters["characters/getCharacters"];
-    }
+    ...mapGetters("characters", {
+      items: "getCharacters"
+    })
   }
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -12,14 +12,6 @@ export default {
   name: "Characters",
   components: {
     List
-  },
-  created() {
-    this.fetchCharacters();
-  },
-  methods: {
-    fetchCharacters() {
-      this.$store.dispatch("characters/loadCharacters");
-    }
   }
 };
 </script>
