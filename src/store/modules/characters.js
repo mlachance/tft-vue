@@ -12,10 +12,11 @@ const defaultState = {
     weapon: "",
     armor: ""
   },
-  index: 0
+  index: -1
 };
 
 const state = {
+  emptyChar: defaultState.char,
   characters: [],
   index: defaultState.index
 };
@@ -24,9 +25,9 @@ const getters = {
   getCharacters: state => {
     return state.characters;
   },
-  getCharacter: state => defaultState => {
-    if (state.index === -1) {
-      return defaultState.character;
+  getCharacter: state => {
+    if (state.index < 0) {
+      return state.emptyChar;
     }
     return state.characters[state.index];
   }
@@ -34,24 +35,21 @@ const getters = {
 
 const mutations = {
   setIndex(state, value) {
-    debugger;
-    const testCondition = element => element.id === value;
-    state.index = state.characters.findIndex(testCondition);
+    // noinspection EqualityComparisonWithCoercionJS
+    state.index = state.characters.findIndex(element => element.id == value);
   },
   setCharacters(state, payload) {
     state.characters = payload;
-  },
-  setCharacter(state, payload) {
-    if (payload.index) {
-      state.characters[payload.index] = payload.data;
-    }
   }
 };
 
 const actions = {
   loadCharacters({ commit }) {
-    CharacterService.getCharacters().then(response => {
-      commit("setCharacters", response.data.data);
+    return new Promise(resolve => {
+      CharacterService.getCharacters().then(response => {
+        commit("setCharacters", response.data.data);
+        resolve();
+      });
     });
   },
   saveCharacter() {

@@ -2,7 +2,7 @@
     <div>
         <label>
             {{ label }}
-            <input>
+            <input :value="value" @input="updateValue">
         </label>
     </div>
 </template>
@@ -13,6 +13,11 @@
     props: {
       label: String,
       value: Number
+    },
+    methods: {
+      updateValue(value) {
+        this.$store.commit("updateSingleValue", value)
+      }
     }
   };
 </script>
