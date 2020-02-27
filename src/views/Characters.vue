@@ -2,6 +2,7 @@
   <div id="character-list">
     <h1>List of characters</h1>
     <List />
+    <router-link to="/character/new">Add a new character</router-link>
   </div>
 </template>
 

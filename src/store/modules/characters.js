@@ -2,8 +2,7 @@ import CharacterService from "../../services/CharacterService";
 
 const namespaced = true;
 
-const defaultState = {
-  character: {
+const emptyCharacter = {
     name: "",
     st: null,
     dx: null,
@@ -11,14 +10,12 @@ const defaultState = {
     ma: null,
     weapon: "",
     armor: ""
-  },
-  index: -1
 };
 
 const state = {
-  emptyChar: defaultState.char,
+  newCharacter: emptyCharacter,
   characters: [],
-  index: defaultState.index
+  index: -1
 };
 
 const getters = {
@@ -27,19 +24,26 @@ const getters = {
   },
   getCharacter: state => {
     if (state.index < 0) {
-      return state.emptyChar;
+      return state.newCharacter;
     }
     return state.characters[state.index];
+  },
+  getNewCharacter: state => {
+    return state.newCharacter;
   }
 };
 
 const mutations = {
   setIndex(state, value) {
-    // noinspection EqualityComparisonWithCoercionJS
-    state.index = state.characters.findIndex(element => element.id == value);
+    state.index = state.characters.findIndex(
+      element => element.id + "" === value + ""
+    );
   },
-  setCharacters(state, payload) {
-    state.characters = payload;
+  setCharacters(state, data) {
+    state.characters = data;
+  },
+  updateSingleValue(state, data) {
+    state.character[state.index][data.attribute] = data.value;
   }
 };
 
@@ -52,14 +56,20 @@ const actions = {
       });
     });
   },
-  saveCharacter() {
-    // todo: send either POST for a new character or PUT for an edit
+  saveCharacter({ getters }) {
+    const serviceAction = data.id ? "PUT" : "POST";
+    return new Promise(resolve => {
+      CharacterService.setCharacter({
+        action: serviceAction,
+        data: data
+      }).then(() => resolve());
+    });
   }
 };
 
 export default {
   namespaced,
-  defaultState,
+  defaultState: emptyCharacter,
   state,
   getters,
   mutations,

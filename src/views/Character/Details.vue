@@ -1,17 +1,22 @@
 <template>
   <div class="details">
     <h1>Details for {{ character.name }}</h1>
-    <attributes v-bind:character="character" />
+    <form @submit.prevent="">
+      <attributes v-bind:character="character" />
+      <equipment v-bind:character="character" />
+      <button type="submit">Update</button>
+    </form>
   </div>
 </template>
 
 <script>
-  import {mapGetters, mapMutations} from 'vuex';
+import { mapGetters, mapMutations } from "vuex";
 import Attributes from "../../components/Character/Attributes";
+import Equipment from "../../components/Character/Equipment";
 
 export default {
   name: "Details",
-  components: { Attributes },
+  components: { Equipment, Attributes },
   data() {
     return {};
   },
@@ -27,9 +32,9 @@ export default {
     this.setUpCharacters();
   },
   methods: {
-    ...mapMutations("characters", ["setIndex"]),
+    ...mapMutations("characters", ["setIndex", "saveCharacter"]),
     setUpCharacters() {
-      if (this.$store.state.characters.characters.length < 1 ) {
+      if (this.$store.state.characters.characters.length < 1) {
         this.$store.dispatch("characters/loadCharacters").then(() => {
           this.setIndex(this.charId);
         });
@@ -40,5 +45,3 @@ export default {
   }
 };
 </script>
-
-<style scoped></style>
