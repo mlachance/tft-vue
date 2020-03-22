@@ -1,27 +1,21 @@
 <template>
-    <div>
-        <label>
-            {{ label }}
-            <input :value="value" @input="updateValue">
-        </label>
-    </div>
+  <div>
+    <label>
+      {{ label }}
+      <input v-model="value" type="number" />
+    </label>
+  </div>
 </template>
 
 <script>
-  export default {
-    name: 'Attribute',
-    props: {
-      label: String,
-      value: Number
-    },
-    methods: {
-      updateValue(value) {
-        this.$store.commit("updateSingleValue", value)
-      }
-    }
-  };
+export default {
+  name: "Attribute",
+  props: {
+    label: String,
+    attributeType: String,
+    value: Number
+  }
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

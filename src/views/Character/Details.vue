@@ -2,8 +2,8 @@
   <div class="details">
     <h1>Details for {{ character.name }}</h1>
     <form @submit.prevent="">
-      <attributes v-bind:character="character" />
-      <equipment v-bind:character="character" />
+      <attributes :character="character" />
+      <equipment :character="character" />
       <button type="submit">Update</button>
     </form>
   </div>
@@ -21,9 +21,15 @@ export default {
     return {};
   },
   computed: {
-    ...mapGetters("characters", {
-      character: "getCharacter"
-    }),
+      character: {
+        get() {
+          return this.$store.state.characters.characterInEdit;
+        },
+        set(value) {
+          this.$store.commit("characters/setCharacter", value)
+        }
+      },
+
     charId() {
       return this.$route.params.characterId;
     }
@@ -31,8 +37,11 @@ export default {
   created() {
     this.setUpCharacters();
   },
+  mounted() {
+    this.setEdit();
+  },
   methods: {
-    ...mapMutations("characters", ["setIndex", "saveCharacter"]),
+    ...mapMutations("characters", ["setIndex", "saveCharacter", "setEdit"]),
     setUpCharacters() {
       if (this.$store.state.characters.characters.length < 1) {
         this.$store.dispatch("characters/loadCharacters").then(() => {

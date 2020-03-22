@@ -1,4 +1,31 @@
-// base colors
-$white: #ffffff;
-$black: #000000;
+@import "constants";
 
+
+@import url('https://fonts.googleapis.com/css?family=Tillana&display=swap');
+
+body {
+  background: aliceblue;
+}
+
+#app {
+  font-family: 'Tillana', cursive;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: $blue;
+}
+
+#nav {
+  padding: 30px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
+
+@import "input";

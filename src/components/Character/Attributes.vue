@@ -1,9 +1,9 @@
 <template>
   <div id="attributes">
-    <attribute :label="'ST'" :value="character.st" />
-    <attribute :label="'DX'" :value="character.dx" />
-    <attribute :label="'IQ'" :value="character.iq" />
-    <attribute :label="'MA'" :value="character.ma" />
+    <attribute :value="character.st" attribute-type="st" label="ST" />
+    <attribute :value="character.dx" attribute-type="dx" label="DX" />
+    <attribute :value="character.iq" attribute-type="iq" label="IQ" />
+    <attribute :value="character.ma" attribute-type="ma" label="MA" />
   </div>
 </template>
 

@@ -1,10 +1,11 @@
 <template>
   <div class="details">
     <h1>Create a new character:</h1>
-    <form @submit.prevent="">
-      <attributes :character="character" />
-      <equipment :character="character" />
-      <button type="submit">Update</button>
+    <form @submit.prevent="processForm">
+      <name :character="localCharacter" />
+      <attributes :character="localCharacter" />
+      <equipment :character="localCharacter" />
+      <button type="submit">Create</button>
     </form>
   </div>
 </template>
@@ -13,23 +14,38 @@
 import { mapGetters, mapMutations } from "vuex";
 import Attributes from "../../components/Character/Attributes";
 import Equipment from "../../components/Character/Equipment";
+import Name from "../../components/Character/Name";
+import router from "../../router";
 
 export default {
   name: "New",
-  components: { Equipment, Attributes },
+  components: { Name, Equipment, Attributes },
   data() {
-    return {};
+    return {
+      localCharacter: {}
+    };
   },
   computed: {
     ...mapGetters("characters", {
-      character: "getNewCharacter"
-    }),
-    charId() {
-      return this.$route.params.characterId;
+      character: "getCharacter"
+    })
+  },
+  mounted() {
+    this.setIndex(-1);
+    this.setEdit();
+    this.localCharacter = this.character;
+  },
+  watch: {
+    character() {
+      this.localCharacter = this.character;
     }
   },
   methods: {
-    ...mapMutations("characters", ["saveCharacter"]),
+    ...mapMutations("characters", ["saveCharacter", "setEdit", "setIndex"]),
+    processForm() {
+      debugger;
+      this.saveCharacter(this.localCharacter).then(() => router.push("/characters"));
+    }
   }
 };
 </script>

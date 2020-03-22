@@ -1,0 +1,14 @@
+@import "constants";
+
+input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid $blue;
+  color: red;
+  font-family: "Tillana", cursive;
+  font-size: 16px;
+
+  &:focus {
+    outline: none;
+  }
+}
