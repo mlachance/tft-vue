@@ -43,8 +43,9 @@ export default {
   methods: {
     ...mapMutations("characters", ["saveCharacter", "setEdit", "setIndex"]),
     processForm() {
-      debugger;
-      this.saveCharacter(this.localCharacter).then(() => router.push("/characters"));
+      this.$store
+        .dispatch("characters/saveCharacter", this.localCharacter)
+        .then(() => router.push("/characters"));
     }
   }
 };

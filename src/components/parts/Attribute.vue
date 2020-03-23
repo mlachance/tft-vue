@@ -2,7 +2,7 @@
   <div>
     <label>
       <span>{{ label }}</span>
-      <input v-model="value" type="number" class="attribute" />
+      <input v-model="value[attributeType]" type="number" class="attribute" />
     </label>
   </div>
 </template>
@@ -13,7 +13,7 @@ export default {
   props: {
     label: String,
     attributeType: String,
-    value: Number
+    value: Object
   }
 };
 </script>

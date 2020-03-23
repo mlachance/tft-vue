@@ -3,7 +3,7 @@
     <p>
       <label>
         <span>Character's Name:</span>
-        <input :value="character.name" />
+        <input v-model="character.name" />
       </label>
     </p>
   </div>

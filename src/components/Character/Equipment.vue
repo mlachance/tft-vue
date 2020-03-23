@@ -3,13 +3,13 @@
     <p>
       <label>
         <span>Weapon:</span>
-        <input :value="character.weapon"/>
+        <input v-model="character.weapon"/>
       </label>
     </p>
     <p>
       <label>
         <span>Armor:</span>
-        <input :value="character.armor"/>
+        <input v-model="character.armor"/>
       </label>
     </p>
   </div>

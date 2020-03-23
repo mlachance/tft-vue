@@ -1,7 +1,7 @@
 <template>
   <div class="details">
     <h1>Details for {{ localCharacter.name }}</h1>
-    <form @submit.prevent="">
+    <form @submit.prevent="updateCharacter">
       <attributes :character="localCharacter" />
       <equipment :character="localCharacter" />
       <button type="submit">Update</button>
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapMutations } from "vuex";
 import Attributes from "../../components/Character/Attributes";
 import Equipment from "../../components/Character/Equipment";
 
@@ -48,10 +48,14 @@ export default {
       if (this.$store.state.characters.characters.length < 1) {
         this.$store.dispatch("characters/loadCharacters").then(() => {
           this.setIndex(this.charId);
+          this.setEdit();
         });
       } else {
         this.setIndex(this.charId);
       }
+    },
+    updateCharacter() {
+      this.$store.dispatch("characters/saveCharacter", this.localCharacter);
     }
   }
 };

@@ -1,15 +1,18 @@
 @import "constants";
 
-label {
+label {vertical-align: baseline;
   span {
     display: inline-block;
+    padding: 0 10px 0 0;
+    text-align: right;
     width: 180px;
   }
 }
 
 input {
   display: inline-block;
-  padding: 10px;
+  margin: 10px 0;
+  padding: 0 10px;
   width: 180px;
 }
 

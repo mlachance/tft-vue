@@ -2,7 +2,7 @@ import Axios from "axios";
 
 export default () => {
   return Axios.create({
-    baseURL: "http://restapi.localhost/api",
+    baseURL: "/api",
     withCredentials: false,
     headers: {
       Accept: "application/json",

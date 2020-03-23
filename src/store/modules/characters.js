@@ -44,8 +44,12 @@ const mutations = {
     state.characterInEdit = data;
   },
   setEdit(state) {
-    console.log("Index is " + state.index);
-    state.characterInEdit = JSON.parse(JSON.stringify(state.characters[state.index]));
+    console.info("Index is " + state.index);
+    let source = emptyCharacter;
+    if (state.index !== -1) {
+      source = state.characters[state.index];
+    }
+    state.characterInEdit = JSON.parse(JSON.stringify(source));
   },
   updateSingleValue(state, data) {
     console.log(data);
@@ -62,8 +66,7 @@ const actions = {
       });
     });
   },
-  saveCharacter({}, data) {
-    debugger;
+  saveCharacter({ dispatch }, data) {
     const serviceAction = data.id ? "PUT" : "POST";
     return new Promise(resolve => {
       CharacterService.setCharacter({
@@ -71,6 +74,7 @@ const actions = {
         data: data
       }).then(response => {
         console.log(response);
+        dispatch("loadCharacters");
         resolve();
       });
     });
