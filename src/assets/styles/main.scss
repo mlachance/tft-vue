@@ -10,12 +10,13 @@ body {
 
 #app {
   background: white;
+  box-shadow: 0 10px 14px 4px transparentize($black, 0.5);
   font-family: 'Tillana', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $blue;
   margin: 0 auto;
-  min-height: 90%;
+  min-height: 70vh;
   padding: 2em;
   text-align: left;
   width: 600px;
@@ -33,6 +34,10 @@ body {
       color: #42b983;
     }
   }
+}
+
+a {
+  color: $blue;
 }
 
 h1 {
