@@ -5,18 +5,25 @@
 
 body {
   background: aliceblue;
+  text-align: center;
 }
 
 #app {
+  background: white;
   font-family: 'Tillana', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: $blue;
+  margin: 0 auto;
+  min-height: 90%;
+  padding: 2em;
+  text-align: left;
+  width: 600px;
 }
 
 #nav {
   padding: 30px;
+  text-align: center;
 
   a {
     font-weight: bold;
@@ -28,4 +35,15 @@ body {
   }
 }
 
+h1 {
+  text-align: center;
+}
+
+ul {
+  li {
+    list-style: none;
+  }
+}
+
 @import "input";
+@import "form";

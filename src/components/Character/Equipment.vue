@@ -1,10 +1,16 @@
 <template>
   <div class="equipment">
     <p>
-      <label>Weapon: <input :value="character.weapon"/></label>
+      <label>
+        <span>Weapon:</span>
+        <input :value="character.weapon"/>
+      </label>
     </p>
     <p>
-      <label>Armor: <input :value="character.armor"/></label>
+      <label>
+        <span>Armor:</span>
+        <input :value="character.armor"/>
+      </label>
     </p>
   </div>
 </template>

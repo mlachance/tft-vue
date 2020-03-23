@@ -1,0 +1,19 @@
+@import "constants";
+
+label {
+  span {
+    display: inline-block;
+    width: 180px;
+  }
+}
+
+input {
+  display: inline-block;
+  padding: 10px;
+  width: 180px;
+}
+
+.attribute {
+  text-align: center;
+  width: 50px;
+}

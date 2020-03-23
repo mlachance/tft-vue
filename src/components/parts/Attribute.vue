@@ -1,8 +1,8 @@
 <template>
   <div>
     <label>
-      {{ label }}
-      <input v-model="value" type="number" />
+      <span>{{ label }}</span>
+      <input v-model="value" type="number" class="attribute" />
     </label>
   </div>
 </template>
@@ -17,5 +17,3 @@ export default {
   }
 };
 </script>
-
-<style scoped></style>

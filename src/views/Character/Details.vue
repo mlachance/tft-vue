@@ -1,9 +1,9 @@
 <template>
   <div class="details">
-    <h1>Details for {{ character.name }}</h1>
+    <h1>Details for {{ localCharacter.name }}</h1>
     <form @submit.prevent="">
-      <attributes :character="character" />
-      <equipment :character="character" />
+      <attributes :character="localCharacter" />
+      <equipment :character="localCharacter" />
       <button type="submit">Update</button>
     </form>
   </div>
@@ -18,18 +18,14 @@ export default {
   name: "Details",
   components: { Equipment, Attributes },
   data() {
-    return {};
+    return {
+      localCharacter: {}
+    };
   },
   computed: {
-      character: {
-        get() {
-          return this.$store.state.characters.characterInEdit;
-        },
-        set(value) {
-          this.$store.commit("characters/setCharacter", value)
-        }
-      },
-
+    character() {
+      return this.$store.state.characters.characterInEdit;
+    },
     charId() {
       return this.$route.params.characterId;
     }
@@ -39,6 +35,12 @@ export default {
   },
   mounted() {
     this.setEdit();
+    this.localCharacter = this.character;
+  },
+  watch: {
+    character() {
+      this.localCharacter = this.character;
+    }
   },
   methods: {
     ...mapMutations("characters", ["setIndex", "saveCharacter", "setEdit"]),

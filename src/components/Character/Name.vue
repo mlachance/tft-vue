@@ -1,7 +1,10 @@
 <template>
   <div class="equipment">
     <p>
-      <label>Character's Name: <input :value="character.name"/></label>
+      <label>
+        <span>Character's Name:</span>
+        <input :value="character.name" />
+      </label>
     </p>
   </div>
 </template>

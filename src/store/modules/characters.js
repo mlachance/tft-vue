@@ -45,7 +45,7 @@ const mutations = {
   },
   setEdit(state) {
     console.log("Index is " + state.index);
-    state.characterInEdit = this._.cloneDeep(state.characters[state.index]);
+    state.characterInEdit = JSON.parse(JSON.stringify(state.characters[state.index]));
   },
   updateSingleValue(state, data) {
     console.log(data);
