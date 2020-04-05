@@ -38,6 +38,7 @@ body {
 
 a {
   color: $blue;
+  text-decoration: none;
 }
 
 h1 {
@@ -46,7 +47,7 @@ h1 {
 
 ul {
   li {
-    list-style: none;
+    list-style: circle;
   }
 }
 
