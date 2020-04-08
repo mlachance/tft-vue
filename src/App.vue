@@ -16,11 +16,16 @@
     name: "App",
     created() {
       this.fetchCharacters();
+      this.loadEquipment();
     },
     methods: {
       ...mapActions("characters", {
         fetchCharacters: "loadCharacters"
-      })
+      }),
+      loadEquipment() {
+        this.$store.dispatch("armor/loadItems");
+        this.$store.dispatch("weapons/loadItems");
+      }
     }
   }
 

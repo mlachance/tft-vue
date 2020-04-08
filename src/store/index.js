@@ -3,10 +3,14 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-import characters from "./modules/characters"
+import armor from "./modules/armor";
+import characters from "./modules/characters";
+import weapons from "./modules/weapons";
 
 export default new Vuex.Store({
   modules: {
-    characters
+    armor,
+    characters,
+    weapons
   }
 });
